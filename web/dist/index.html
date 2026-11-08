@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="google-site-verification" content="TdiRUPVFuOTuF6mGSIdNuCMfEG0jdApJ2uiAT8fZYbc" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Trim, frame and caption clips directly in your browser with Clipforge.">
+<link rel="canonical" href="https://clipforge-the-next-step.netlify.app/">
+<meta name="robots" content="index, follow">
+<title>Clipforge Studio — Browser video editor</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fonts.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="wrap header"><a class="brand" href="./"><span class="mark">▷</span> Clipforge <span class="version">STUDIO</span></a><nav aria-label="Main"><a href="#editor">Editor</a><a href="#about">How it works</a></nav></header>
+<main>
+<section class="wrap studio-intro"><p class="eyebrow"><span></span> BROWSER VIDEO EDITOR</p><h1>Make your <em>next clip.</em></h1><p class="lede">Choose a video, preview your look, and export a captioned clip. Editing and speech processing run in this tab.</p></section>
+<section class="wrap workspace" id="editor" aria-label="Video editor">
+<div class="controls">
+<label class="file-picker"><span class="eyebrow">01 / SOURCE</span><strong>Choose a video</strong><small>MP4, WebM or another format your browser supports</small><input type="file" id="file" accept="video/*,.mp4,.webm,.mov,.m4v"></label>
+<p class="file-name" id="file-name">No video selected</p>
+<fieldset id="settings" disabled>
+<legend class="eyebrow">02 / EDIT</legend>
+<div class="preset-grid" aria-label="Caption presets">
+<button type="button" class="preset" data-preset="editorial" aria-pressed="true"><span class="preset-preview editorial">Make it count</span><strong>Editorial</strong><small>Inter · mint accent</small></button>
+<button type="button" class="preset" data-preset="cinema" aria-pressed="false"><span class="preset-preview cinema">Make it count</span><strong>Cinema</strong><small>Playfair · warm accent</small></button>
+<button type="button" class="preset" data-preset="minimal" aria-pressed="false"><span class="preset-preview minimal">Make it count</span><strong>Minimal</strong><small>Poppins · clean white</small></button>
+</div>
+<div class="fields"><label>Start (seconds)<input id="start" type="number" min="0" step=".01" value="0"></label><label>End (seconds)<input id="end" type="number" min="0" step=".01" value="30"></label></div>
+<div class="fields"><label>Aspect ratio<select id="ratio"><option>4:5</option><option>9:16</option><option>1:1</option><option>16:9</option></select></label><label>Layout<select id="layout"><option value="studio">Editorial</option><option value="fit">Full picture</option></select></label></div>
+<div class="fields"><label>Captions<select id="caption-mode"><option value="auto">Generate English</option><option value="manual">My own caption</option><option value="none">Captions off</option></select></label><label>Source language<select id="language"><option value="auto">Detect automatically</option><option value="ar">Arabic</option><option value="en">English</option><option value="hi">Hindi</option><option value="ur">Urdu</option><option value="es">Spanish</option><option value="fr">French</option></select></label></div>
+<label>Font<select id="font"><option>Inter</option><option>Montserrat</option><option>Poppins</option><option>Bebas Neue</option><option>Anton</option><option>Oswald</option><option>Bangers</option><option>Roboto Condensed</option><option>Playfair Display</option><option>Lobster</option><option>Luckiest Guy</option><option>Archivo Black</option><option>Permanent Marker</option></select></label>
+<label>Caption text <small>Automatic captions appear here for corrections</small><textarea id="caption" rows="3" maxlength="4000" placeholder="Generate captions to review them, or choose My own caption."></textarea></label>
+<p class="caption-note">English captions can translate Arabic audio. First use downloads a speech model. Singing and translated word timing may need corrections.</p>
+<button type="button" id="generate">Generate / review captions</button>
+<button type="button" class="button" id="export">Export clip ↗</button>
+</fieldset>
+<p id="status" role="status" aria-live="polite">Choose a video to begin.</p>
+<progress id="progress" max="1" value="0" hidden></progress>
+<button type="button" id="cancel" hidden>Cancel export</button>
+</div>
+<div class="studio"><div class="studio-head"><span><i></i> CLIP PREVIEW</span><span id="dimensions">4:5</span></div>
+<div class="stage editor-stage"><p id="empty">Your video preview will appear here</p><canvas id="canvas" width="720" height="900" aria-label="Edited clip preview" hidden></canvas></div>
+<div class="studio-foot"><label class="scrub">Preview position <input type="range" id="scrub" min="0" max="30" step=".01" value="0" disabled></label><output id="time" for="scrub">0:00.0</output></div>
+</div>
+</section>
+<section class="wrap result" id="result" aria-labelledby="result-title" hidden><div><p class="eyebrow">03 / EXPORT</p><h2 id="result-title">Your clip is ready.</h2><p id="result-meta"></p><a class="button" id="save">Save finished clip ↓</a></div><video id="result-video" controls playsinline></video></section>
+<section class="pipeline" id="about"><div class="wrap"><p class="eyebrow">LOCAL PROCESSING</p><h2>From file to finished clip.</h2><div class="steps">
+<article><span class="step-num">01</span><h3>Choose</h3><p>Open a video from your device. The source stays in your browser.</p></article>
+<article><span class="step-num">02</span><h3>Compose</h3><p>Use the suggested trim and layout, or choose a preset and font. English captions are generated when you export.</p></article>
+<article><span class="step-num">03</span><h3>Export</h3><p>Keep this tab open during rendering. Output is MP4 or WebM depending on browser support. Trim timing is approximate.</p></article>
+<article><span class="step-num">04</span><h3>Source support</h3><p>Choose a local video file. YouTube-link import requires a separate processing service and is unavailable in this editor.</p></article>
+</div></div></section>
+</main>
+<footer class="wrap footer"><a class="brand" href="./"><span class="mark">▷</span> Clipforge</a><span>Browser Studio</span></footer>
+<video id="source" playsinline preload="auto" hidden></video>
+</body>
+</html>

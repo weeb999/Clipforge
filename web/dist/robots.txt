@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://clipforge-the-next-step.netlify.app/sitemap.xml
